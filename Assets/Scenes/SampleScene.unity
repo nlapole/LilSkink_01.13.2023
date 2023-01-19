@@ -331,10 +331,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
-<<<<<<< HEAD
   - component: {fileID: 519420033}
-=======
->>>>>>> parent of c95e31c (Merge branch 'TheBradyBranch')
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -408,7 +405,6 @@ Transform:
   m_Father: {fileID: 1724348887}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
 --- !u!114 &519420033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,8 +439,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
-=======
->>>>>>> parent of c95e31c (Merge branch 'TheBradyBranch')
 --- !u!1 &624076057
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,11 +453,7 @@ GameObject:
   - component: {fileID: 624076060}
   - component: {fileID: 624076062}
   - component: {fileID: 624076063}
-<<<<<<< HEAD
   m_Layer: 6
-=======
-  m_Layer: 0
->>>>>>> parent of c95e31c (Merge branch 'TheBradyBranch')
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
