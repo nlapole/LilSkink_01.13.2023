@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 409285368}
   - component: {fileID: 409285367}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -332,9 +332,6 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
-CarlBranch
-  - component: {fileID: 519420034}
-main
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -377,7 +374,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10.185744
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -408,106 +405,7 @@ Transform:
   m_Father: {fileID: 1724348887}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-CarlBranch
 --- !u!114 &519420033
---- !u!82 &519420033
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 265333388911647be9b434103bb913a1, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &519420034
-main
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -516,7 +414,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-CarlBranch
   m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -542,11 +439,6 @@ CarlBranch
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_Script: {fileID: 11500000, guid: 8229891c4eae041c1b7b2bda8030de66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thingToFollow: {fileID: 624076057}
-main
 --- !u!1 &624076057
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,15 +451,10 @@ GameObject:
   - component: {fileID: 624076058}
   - component: {fileID: 624076061}
   - component: {fileID: 624076060}
-  - component: {fileID: 624076064}
   - component: {fileID: 624076062}
   - component: {fileID: 624076063}
-CarlBranch
   m_Layer: 6
   m_Name: Player
-  m_Layer: 0
-  m_Name: Skinker
-main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -633,7 +520,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 624076057}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.25, y: 0.62, z: 0}
+  m_LocalPosition: {x: 1.355713, y: 1.2337291, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -649,12 +536,12 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 624076057}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 35fb7f94cf8cc3747883dc055e78343d, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.040212214}
-  m_Size: {x: 1.0361657, y: 1.0630623}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 1}
   m_Direction: 0
 --- !u!50 &624076061
 Rigidbody2D:
@@ -671,11 +558,11 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 10
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!114 &624076062
 MonoBehaviour:
@@ -719,7 +606,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 175407160ca1ce24590bdadf10a419cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-CarlBranch
   runSpeed: 10
   jumpSpeed: 5
 --- !u!1 &775923503
@@ -912,16 +798,10 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1399095625
 MonoBehaviour:
-  runSpeed: 15
-  jumpSpeed: 25
---- !u!61 &624076064
-BoxCollider2D:
-main
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-CarlBranch
   m_GameObject: {fileID: 1399095622}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -933,27 +813,6 @@ CarlBranch
   m_BoundingShape2D: {fileID: 495308184}
   m_ConfineScreenEdges: 1
   m_Damping: 0
-  m_GameObject: {fileID: 624076057}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.3360229}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.93708575, y: 0.32795417}
-  m_EdgeRadius: 0
-main
 --- !u!1 &1581208261
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,7 +827,7 @@ GameObject:
   - component: {fileID: 1581208265}
   - component: {fileID: 1581208264}
   - component: {fileID: 1581208263}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: CollisionTileMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1090,7 +949,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 35fb7f94cf8cc3747883dc055e78343d, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0

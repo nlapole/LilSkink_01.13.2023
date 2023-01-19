@@ -8,14 +8,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpSpeed = 5f;
     Vector2 moveInput;
     Rigidbody2D myRigidbody;
-    CapsuleCollider2D myBodyCollider;
-    BoxCollider2D myFeetCollider;
 
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
-        myBodyCollider = GetComponent<CapsuleCollider2D>();
-        myFeetCollider = GetComponent<BoxCollider2D>();
     }
 
     void Update()
@@ -28,14 +24,9 @@ public class PlayerMovement : MonoBehaviour
         moveInput = value.Get<Vector2>();
     }
 
-
+    // 3 Minutes into "Jumpy Jump" tutorial, part of the Udemy "Learn Unity in C#..."
     void OnJump(InputValue value)
     {
-        if (!myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
-        {
-            return;
-        }
-
         if(value.isPressed)
         {
             myRigidbody.velocity += new Vector2(0f, jumpSpeed);
