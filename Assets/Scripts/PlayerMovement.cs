@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
@@ -37,13 +35,20 @@ public class PlayerMovement : MonoBehaviour
         if (!myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             return;
+
         }
 
-        if(value.isPressed)
+        if (value.isPressed)
         {
             myRigidbody.velocity += new Vector2(0f, jumpSpeed);
         }
-
+        
+        
+        //This line of code cause the jump animation to play. However, I can't figure out how to transition out.
+        if (Mathf.Abs(myRigidbody.velocity.y) > Mathf.Epsilon)
+        {
+            myAnimator.SetBool("isJumping", true);
+        }
     }
 
     void Run()
@@ -58,11 +63,11 @@ public class PlayerMovement : MonoBehaviour
     void FlipSprite()
     {
         bool playerHasHorizontalSpeed = Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon;
-        
+
         if (playerHasHorizontalSpeed)
         {
             transform.localScale = new Vector2(Mathf.Sign(myRigidbody.velocity.x), 1f);
         }
-        
+
     }
 }
