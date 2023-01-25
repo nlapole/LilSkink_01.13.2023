@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Run();
         FlipSprite();
+        Falling();
     }
 
     void OnMove(InputValue value)
@@ -35,19 +36,11 @@ public class PlayerMovement : MonoBehaviour
         if (!myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             return;
-
         }
 
         if (value.isPressed)
         {
             myRigidbody.velocity += new Vector2(0f, jumpSpeed);
-        }
-        
-        
-        //This line of code cause the jump animation to play. However, I can't figure out how to transition out.
-        if (Mathf.Abs(myRigidbody.velocity.y) > Mathf.Epsilon)
-        {
-            myAnimator.SetBool("isJumping", true);
         }
     }
 
@@ -57,7 +50,16 @@ public class PlayerMovement : MonoBehaviour
         myRigidbody.velocity = playerVelocity;
 
         bool playerHasHorizontalSpeed = Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon;
-        myAnimator.SetBool("isRunning", playerHasHorizontalSpeed);
+        
+        if (myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        {
+            myAnimator.SetBool("isRunning", playerHasHorizontalSpeed);
+        }
+        else
+        {
+            myAnimator.SetBool("isRunning", false);
+        }
+
 
     }
     void FlipSprite()
@@ -69,5 +71,29 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = new Vector2(Mathf.Sign(myRigidbody.velocity.x), 1f);
         }
 
+    }
+
+    void Falling()
+    {
+        if (
+           myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))
+        )
+        {
+            myAnimator.SetBool("isJumping", false);
+            myAnimator.SetBool("isLanding", false);
+            return;
+        }
+
+        bool playerHasVerticalSpeed = Mathf.Abs(myRigidbody.velocity.y) > Mathf.Epsilon;
+        if (myRigidbody.velocity.y >= 0)
+        {
+            myAnimator.SetBool("isJumping", playerHasVerticalSpeed);
+            myAnimator.SetBool("isLanding", false);
+        }
+        else
+        {
+            myAnimator.SetBool("isJumping", false);
+            myAnimator.SetBool("isLanding", playerHasVerticalSpeed);
+        }
     }
 }
