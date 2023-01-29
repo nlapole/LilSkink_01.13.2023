@@ -9,6 +9,10 @@ public class PlayerMovement : MonoBehaviour
     CapsuleCollider2D myBodyCollider;
     BoxCollider2D myFeetCollider;
     Animator myAnimator;
+    //public AudioClip jumpAudio;
+    public AudioClip[] jumpAudio;
+    public AudioClip landAudio;
+    public AudioSource audioSource;
 
     void Start()
     {
@@ -41,6 +45,19 @@ public class PlayerMovement : MonoBehaviour
         if (value.isPressed)
         {
             myRigidbody.velocity += new Vector2(0f, jumpSpeed);
+        
+        //Print dialogue test for audio debugging
+            //Debug.Log("Kerpow");
+
+        //get audio source component
+            audioSource = GetComponent<AudioSource>();
+
+        //randomized audio for standard jump
+            audioSource.clip = jumpAudio[Random.Range(0, jumpAudio.Length)];
+            audioSource.Play();
+        
+        //audio that works but is really boring
+            //audioSource.PlayOneShot(jumpAudio, 0.7F);
         }
     }
 
@@ -94,6 +111,10 @@ public class PlayerMovement : MonoBehaviour
         {
             myAnimator.SetBool("isJumping", false);
             myAnimator.SetBool("isLanding", playerHasVerticalSpeed);
+
+        //Old code that doesn't play audio correctly (keep until resolved)    
+            //audioSource = GetComponent<AudioSource>();
+            //audioSource.PlayOneShot(landAudio, 0.7F);
         }
     }
 }
