@@ -4,15 +4,20 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float runSpeed = 10f;
     [SerializeField] float jumpSpeed = 5f;
+    [SerializeField] Vector2 enemyBump = new Vector2(10f, 25f);
     Vector2 moveInput;
     Rigidbody2D myRigidbody;
     CapsuleCollider2D myBodyCollider;
     BoxCollider2D myFeetCollider;
     Animator myAnimator;
+
+    bool skinkerAlive = true;
+
     //public AudioClip jumpAudio;
     public AudioClip[] jumpAudio;
     public AudioClip landAudio;
     public AudioSource audioSource;
+
 
     void Start()
     {
@@ -24,19 +29,24 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (!skinkerAlive) { return; }
         Run();
         FlipSprite();
         Falling();
+        skinkerHit();
+        skinkerKO();
     }
 
     void OnMove(InputValue value)
     {
+        if (!skinkerAlive) { return; }
         moveInput = value.Get<Vector2>();
     }
 
 
     void OnJump(InputValue value)
     {
+        if (!skinkerAlive) { return; }
         if (!myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             return;
@@ -117,4 +127,23 @@ public class PlayerMovement : MonoBehaviour
             //audioSource.PlayOneShot(landAudio, 0.7F);
         }
     }
+
+    void skinkerHit()
+    {
+        if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemies")))
+        {
+            myRigidbody.velocity = enemyBump;
+        }
+         
+    }
+
+    void skinkerKO()
+    {
+        if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Wave")))
+        {
+            skinkerAlive = false;
+            myAnimator.SetTrigger("isKO");
+        }
+    }
+    
 }
