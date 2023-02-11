@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float runSpeed = 10f;
@@ -17,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip[] jumpAudio;
     public AudioClip landAudio;
     public AudioSource audioSource;
+
 
 
     void Start()
@@ -143,7 +146,14 @@ public class PlayerMovement : MonoBehaviour
         {
             skinkerAlive = false;
             myAnimator.SetTrigger("isKO");
+            GameOver();
         }
     }
+    void GameOver()
+    {
+        float t = Time.deltaTime / 1f;
+        SceneManager.LoadScene("GameOver");
+    }
+
     
 }

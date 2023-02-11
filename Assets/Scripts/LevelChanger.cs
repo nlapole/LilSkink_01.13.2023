@@ -8,25 +8,23 @@ public class LevelChanger : MonoBehaviour
     public Animator animator;
 
     private int levelToLoad;
-
-    void Update ()
+    public class LoadAfterTime : MonoBehaviour
     {
-        if (Input.GetMouseButtonDown(0))
+        [SerializeField]
+        private float delayBeforeLoading = 10f;
+        [SerializeField]
+        private string sceneNameToLoad;
+        private float timeElapsed;
+        void Update()
         {
-            FadeToNextLevel();
+            timeElapsed += Time.deltaTime;
+            if (timeElapsed > delayBeforeLoading)
+            {
+                SceneManager.LoadScene(sceneNameToLoad);
+            }
         }
-        
-    }
-    public void FadeToNextLevel ()
-    {
-        FadeToLevel(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void FadeToLevel(int levelIndex)
-    {
-        levelToLoad = levelIndex;
-        animator.SetTrigger("FadeOut");
-    }
 
     public void OnFadeComplete ()
     {
