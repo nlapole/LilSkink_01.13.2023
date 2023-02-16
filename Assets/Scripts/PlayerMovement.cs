@@ -14,9 +14,8 @@ public class PlayerMovement : MonoBehaviour
     Animator myAnimator;
 
     bool skinkerAlive = true;
-
-    //public AudioClip jumpAudio;
     public AudioClip[] jumpAudio;
+    public AudioClip moveAudio;
     public AudioClip landAudio;
     public AudioSource audioSource;
 
@@ -28,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
         myBodyCollider = GetComponent<CapsuleCollider2D>();
         myFeetCollider = GetComponent<BoxCollider2D>();
         myAnimator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -44,8 +44,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!skinkerAlive) { return; }
         moveInput = value.Get<Vector2>();
+       
     }
-
 
     void OnJump(InputValue value)
     {
@@ -58,21 +58,16 @@ public class PlayerMovement : MonoBehaviour
         if (value.isPressed)
         {
             myRigidbody.velocity += new Vector2(0f, jumpSpeed);
-        
-        //Print dialogue test for audio debugging
-            //Debug.Log("Kerpow");
 
-        //get audio source component
-            audioSource = GetComponent<AudioSource>();
+//randomized audio for standard jump
 
-        //randomized audio for standard jump
             audioSource.clip = jumpAudio[Random.Range(0, jumpAudio.Length)];
             audioSource.Play();
         
-        //audio that works but is really boring
-            //audioSource.PlayOneShot(jumpAudio, 0.7F);
         }
     }
+
+
 
     void Run()
     {
@@ -80,18 +75,30 @@ public class PlayerMovement : MonoBehaviour
         myRigidbody.velocity = playerVelocity;
 
         bool playerHasHorizontalSpeed = Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon;
-        
+
+//Starts run audio when moving horizontally//
+        bool moveAudioX = myRigidbody.velocity.x !=0;
+        bool moveAudioY = myRigidbody.velocity.y !=0;
+        if (moveAudioX is false && moveAudioY is false)
+        {
+
+            audioSource.clip = moveAudio;
+            audioSource.Play();
+        }
+//End of run audio script//
+
         if (myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             myAnimator.SetBool("isRunning", playerHasHorizontalSpeed);
+
         }
         else
         {
             myAnimator.SetBool("isRunning", false);
         }
 
-
     }
+
     void FlipSprite()
     {
         bool playerHasHorizontalSpeed = Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon;
