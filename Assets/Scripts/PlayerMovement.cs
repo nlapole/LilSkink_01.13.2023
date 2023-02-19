@@ -19,8 +19,6 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip landAudio;
     public AudioSource audioSource;
 
-
-
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -38,6 +36,17 @@ public class PlayerMovement : MonoBehaviour
         Falling();
         skinkerHit();
         skinkerKO();
+
+        if (Input.GetKeyDown("space"))
+        {
+            audioSource.clip = jumpAudio[Random.Range(0, jumpAudio.Length)];
+            audioSource.Play();
+        } 
+        if (Input.GetKeyDown("d") | Input.GetKeyDown("a") && myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        {
+            audioSource.clip = moveAudio;
+            audioSource.Play();
+        }
     }
 
     void OnMove(InputValue value)
@@ -59,15 +68,13 @@ public class PlayerMovement : MonoBehaviour
         {
             myRigidbody.velocity += new Vector2(0f, jumpSpeed);
 
-//randomized audio for standard jump
+//randomized audio for standard jump (old code: Do not delete)
 
-            audioSource.clip = jumpAudio[Random.Range(0, jumpAudio.Length)];
-            audioSource.Play();
+            //audioSource.clip = jumpAudio[Random.Range(0, jumpAudio.Length)];
+            //audioSource.Play();
         
         }
     }
-
-
 
     void Run()
     {
@@ -76,16 +83,22 @@ public class PlayerMovement : MonoBehaviour
 
         bool playerHasHorizontalSpeed = Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon;
 
-//Starts run audio when moving horizontally//
-        bool moveAudioX = myRigidbody.velocity.x !=0;
-        bool moveAudioY = myRigidbody.velocity.y !=0;
-        if (moveAudioX is false && moveAudioY is false)
-        {
+//Does not work as intended//
+        //if (playerHasHorizontalSpeed is false)
+            //{
+            //audioSource.clip = moveAudio;
+            //audioSource.Play();
+            //}
 
-            audioSource.clip = moveAudio;
-            audioSource.Play();
-        }
-//End of run audio script//
+//Starts run audio when moving horizontally (old code)//
+        //bool moveAudioX = myRigidbody.velocity.x !=0;
+        //bool moveAudioY = myRigidbody.velocity.y !=0;
+        //if (moveAudioX is false && moveAudioY is false)
+        //{
+
+            //audioSource.clip = moveAudio;
+            //audioSource.Play();
+        //}
 
         if (myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
@@ -132,7 +145,7 @@ public class PlayerMovement : MonoBehaviour
             myAnimator.SetBool("isJumping", false);
             myAnimator.SetBool("isLanding", playerHasVerticalSpeed);
 
-        //Old code that doesn't play audio correctly (keep until resolved)    
+//Old code that doesn't play audio correctly (keep until resolved)    
             //audioSource = GetComponent<AudioSource>();
             //audioSource.PlayOneShot(landAudio, 0.7F);
         }
