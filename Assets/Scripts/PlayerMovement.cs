@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip landAudio;
     public AudioSource audioSource;
 
+    
+
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -26,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
         myFeetCollider = GetComponent<BoxCollider2D>();
         myAnimator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+ 
     }
 
     void Update()
