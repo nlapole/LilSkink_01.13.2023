@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     Animator myAnimator;
 
     bool skinkerAlive = true;
+    //bool hasLanded = false;
     public AudioClip[] jumpAudio;
     public AudioClip moveAudio;
     public AudioClip landAudio;
@@ -47,7 +48,34 @@ public class PlayerMovement : MonoBehaviour
             audioSource.clip = moveAudio;
             audioSource.Play();
         }
+        //if (myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        //{
+            //Debug.Log("landed");
+        //}
+        
+
+        //hasLanded = myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"));
+        //if (hasLanded) return;
+        //hasLanded = true;
+        //Debug.Log("landed");
+        //hasLanded = false;
     }
+
+
+
+    
+    //void OnCollision2D(Collider2D other)
+    //{
+       //if (other.tag == "Ground")
+        //Debug.Log("landed");
+        //hasLanded = true;
+        //if (hasLanded is true)
+        //{            
+            //audioSource.clip = landAudio;
+            //audioSource.Play();
+        //}
+
+    //}
 
     void OnMove(InputValue value)
     {

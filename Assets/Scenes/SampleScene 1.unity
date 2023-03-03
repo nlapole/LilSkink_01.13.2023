@@ -1404,8 +1404,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5da547e300645461d96fa310e39589df, type: 3}
   - {fileID: 8300000, guid: 55c76d7ad29f642c8b243a492a4b8004, type: 3}
   moveAudio: {fileID: 8300000, guid: 8cd4083e198ee4d2192215a92e53ee35, type: 3}
-  landAudio: {fileID: 0}
-  audioSource: {fileID: 624076066}
+  landAudio: {fileID: 8300000, guid: 8cd4083e198ee4d2192215a92e53ee35, type: 3}
+  audioSource: {fileID: 0}
 --- !u!61 &624076064
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1975,7 +1975,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1206608823}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: bf5d492d766e543bfa4e600ff955130e, type: 3}
