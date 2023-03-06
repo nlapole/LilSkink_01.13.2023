@@ -18,6 +18,9 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip moveAudio;
     public AudioClip landAudio;
     public AudioSource audioSource;
+    private bool isGrounded = true;
+    public float volumeLand = 1.0f;
+    
 
     
 
@@ -40,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
         skinkerHit();
         skinkerKO();
 
+//Start of Audio
+
         if (Input.GetKeyDown("space"))
         {
             audioSource.clip = jumpAudio[Random.Range(0, jumpAudio.Length)];
@@ -51,6 +56,25 @@ public class PlayerMovement : MonoBehaviour
             audioSource.Play();
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground" && !isGrounded)
+        {
+            AudioSource.PlayClipAtPoint(landAudio, transform.position, volumeLand);
+            isGrounded = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground" && isGrounded)
+        {
+            isGrounded = false;
+        }
+    }
+
+//End of Audio
 
     void OnMove(InputValue value)
     {
@@ -70,12 +94,6 @@ public class PlayerMovement : MonoBehaviour
         if (value.isPressed)
         {
             myRigidbody.velocity += new Vector2(0f, jumpSpeed);
-
-//randomized audio for standard jump (old code: Do not delete)
-
-            //audioSource.clip = jumpAudio[Random.Range(0, jumpAudio.Length)];
-            //audioSource.Play();
-        
         }
     }
 
@@ -85,23 +103,6 @@ public class PlayerMovement : MonoBehaviour
         myRigidbody.velocity = playerVelocity;
 
         bool playerHasHorizontalSpeed = Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon;
-
-//Does not work as intended//
-        //if (playerHasHorizontalSpeed is false)
-            //{
-            //audioSource.clip = moveAudio;
-            //audioSource.Play();
-            //}
-
-//Starts run audio when moving horizontally (old code)//
-        //bool moveAudioX = myRigidbody.velocity.x !=0;
-        //bool moveAudioY = myRigidbody.velocity.y !=0;
-        //if (moveAudioX is false && moveAudioY is false)
-        //{
-
-            //audioSource.clip = moveAudio;
-            //audioSource.Play();
-        //}
 
         if (myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
@@ -148,9 +149,6 @@ public class PlayerMovement : MonoBehaviour
             myAnimator.SetBool("isJumping", false);
             myAnimator.SetBool("isLanding", playerHasVerticalSpeed);
 
-//Old code that doesn't play audio correctly (keep until resolved)    
-            //audioSource = GetComponent<AudioSource>();
-            //audioSource.PlayOneShot(landAudio, 0.7F);
         }
     }
 
