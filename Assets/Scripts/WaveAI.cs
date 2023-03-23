@@ -28,8 +28,14 @@ public class WaveAI : MonoBehaviour
 
         if (distance < distanceBetween)
         {
-            transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
-            transform.rotation = Quaternion.Euler(Vector3.forward);
+            //old//
+            //transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
+            //transform.rotation = Quaternion.Euler(Vector3.forward);
+
+            //New//
+            //restricts the enemy's movement to the x-axis only
+            Vector3 targetPosition = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
         }
     }
 }
