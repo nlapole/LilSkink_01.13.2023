@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource audioSource;
     private bool isGrounded = true;
     public float volumeLand = 1.0f;
+    //public AnimationClip Running;
     
 
     
@@ -50,12 +51,21 @@ public class PlayerMovement : MonoBehaviour
             audioSource.clip = jumpAudio[Random.Range(0, jumpAudio.Length)];
             audioSource.Play();
         } 
-        if (Input.GetKeyDown("d") | Input.GetKeyDown("a") && myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
-        {
+        //if (Input.GetKeyDown("d") | Input.GetKeyDown("a") && myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        //{
+            //audioSource.clip = moveAudio;
+            //audioSource.Play();
+        //}
+
+    
+        bool isRunning = myAnimator.GetBool("isRunning");
+        if (isRunning && !audioSource.isPlaying) {
             audioSource.clip = moveAudio;
             audioSource.Play();
+        } else if (!isRunning && audioSource.isPlaying) {
+            audioSource.Stop();
         }
-    }
+}
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
