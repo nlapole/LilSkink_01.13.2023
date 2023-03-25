@@ -14,16 +14,6 @@ public class PlayerMovement : MonoBehaviour
     Animator myAnimator;
 
     bool skinkerAlive = true;
-    public AudioClip[] jumpAudio;
-    public AudioClip moveAudio;
-    public AudioClip landAudio;
-    public AudioSource audioSource;
-    private bool isGrounded = true;
-    public float volumeLand = 1.0f;
-    //public AnimationClip Running;
-    
-
-    
 
     void Start()
     {
@@ -31,8 +21,6 @@ public class PlayerMovement : MonoBehaviour
         myBodyCollider = GetComponent<CapsuleCollider2D>();
         myFeetCollider = GetComponent<BoxCollider2D>();
         myAnimator = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
- 
     }
 
     void Update()
@@ -43,54 +31,12 @@ public class PlayerMovement : MonoBehaviour
         Falling();
         skinkerHit();
         skinkerKO();
-
-//Start of Audio
-
-        if (Input.GetKeyDown("space"))
-        {
-            audioSource.clip = jumpAudio[Random.Range(0, jumpAudio.Length)];
-            audioSource.Play();
-        } 
-        //if (Input.GetKeyDown("d") | Input.GetKeyDown("a") && myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
-        //{
-            //audioSource.clip = moveAudio;
-            //audioSource.Play();
-        //}
-
-    
-        bool isRunning = myAnimator.GetBool("isRunning");
-        if (isRunning && !audioSource.isPlaying) {
-            audioSource.clip = moveAudio;
-            audioSource.Play();
-        } else if (!isRunning && audioSource.isPlaying) {
-            audioSource.Stop();
-        }
-}
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Ground" && !isGrounded)
-        {
-            AudioSource.PlayClipAtPoint(landAudio, transform.position, volumeLand);
-            isGrounded = true;
-        }
     }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Ground" && isGrounded)
-        {
-            isGrounded = false;
-        }
-    }
-
-//End of Audio
 
     void OnMove(InputValue value)
     {
         if (!skinkerAlive) { return; }
-        moveInput = value.Get<Vector2>();
-       
+        moveInput = value.Get<Vector2>();  
     }
 
     void OnJump(InputValue value)
